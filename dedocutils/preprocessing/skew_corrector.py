@@ -13,21 +13,22 @@ class SkewCorrector(AbstractPreprocessor):
     The projection method is used to determine the rotation angle.
     """
     def __init__(self) -> None:
-        self.delta = 1  # step
-        self.limit = 45  # max angle
+        self.step = 1  # step
+        self.max_angle = 45  # max angle
 
     def preprocess(self, image: np.ndarray, parameters: Optional[dict] = None) -> np.ndarray:
-        result, _ = self.__auto_rotate(image)
+        parameters = {} if parameters is None else parameters
+        result, _ = self.__auto_rotate(image, orientation_angle=parameters.get("orientation_angle", 0))
         return result
 
     def __auto_rotate(self, image: np.ndarray, orientation_angle: int = 0) -> (np.ndarray, int):
         if orientation_angle:
-            image = self._rotate_image(image, orientation_angle)
+            image = self.__rotate_image(image, orientation_angle)
 
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
 
-        angles = np.arange(-self.limit, self.limit + self.delta, self.delta)
+        angles = np.arange(-self.max_angle, self.max_angle + self.step, self.step)
         scores = [self.__determine_score(thresh, angle) for angle in angles]
 
         max_idx = scores.index(max(scores))
@@ -39,16 +40,16 @@ class SkewCorrector(AbstractPreprocessor):
         else:
             best_angle = angles[scores.index(max(scores))]
 
-        rotated = self._rotate_image(image, best_angle)
+        rotated = self.__rotate_image(image, best_angle)
         return rotated, best_angle + orientation_angle
 
     def __determine_score(self, arr: np.ndarray, angle: int) -> (np.ndarray, float):
-        data = self._rotate_image(arr, angle)
+        data = self.__rotate_image(arr, angle)
         histogram = np.sum(data, axis=1, dtype=float)
         score = np.sum((histogram[1:] - histogram[:-1]) ** 2, dtype=float)
         return score
 
-    def _rotate_image(self, image: np.ndarray, angle: float, color_bound: Tuple[int, int, int] = (255, 255, 255)) -> np.ndarray:
+    def __rotate_image(self, image: np.ndarray, angle: float, color_bound: Tuple[int, int, int] = (255, 255, 255)) -> np.ndarray:
         """
         Rotates an image (angle in degrees) and expands image to avoid cropping
         """
