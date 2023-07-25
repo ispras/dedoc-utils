@@ -14,4 +14,11 @@ class AbstractTextDetector(ABC):
 
     @abstractmethod
     def detect(self, image: np.ndarray, parameters: Optional[dict] = None) -> List[BBox]:
+        """
+        Detect text coordinates on the image.
+
+        :param image: image to detect text on it
+        :param parameters: some parameters for detection
+        :return: list with bounding boxes of found text
+        """
         pass

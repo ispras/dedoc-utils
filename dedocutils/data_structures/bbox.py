@@ -1,7 +1,9 @@
 from collections import OrderedDict
+from dataclasses import dataclass
 from typing import Tuple, Dict
 
 
+@dataclass
 class BBox:
     """
     Box around some page object, the coordinate system starts from top left corner
@@ -19,11 +21,10 @@ class BBox:
     |
     V y
     """
-    def __init__(self, x_top_left: int, y_top_left: int, width: int, height: int) -> None:
-        self.x_top_left = x_top_left
-        self.y_top_left = y_top_left
-        self.width = width
-        self.height = height
+    x_top_left: int
+    y_top_left: int
+    width: int
+    height: int
 
     @property
     def x_bottom_right(self) -> int:
@@ -32,12 +33,6 @@ class BBox:
     @property
     def y_bottom_right(self) -> int:
         return self.y_top_left + self.height
-
-    def __str__(self) -> str:
-        return f"BBox(x = {self.x_top_left} y = {self.y_top_left}, w = {self.width}, h = {self.height})"
-
-    def __repr__(self) -> str:
-        return self.__str__()
 
     @property
     def square(self) -> int:

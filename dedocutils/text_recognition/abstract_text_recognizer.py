@@ -11,6 +11,7 @@ class AbstractTextRecognizer(ABC):
     @abstractmethod
     def recognize(self, image: np.ndarray, parameters: Optional[dict] = None) -> str:
         """
+        Recognize text from the given image.
 
         :param image: image with a textual line
         :param parameters: some recognition parameters (e.g. language)
