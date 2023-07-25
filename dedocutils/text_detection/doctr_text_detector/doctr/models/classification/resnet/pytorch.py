@@ -1,3 +1,4 @@
+# noqa
 from typing import Any, Callable, Dict, List, Optional, Tuple
 from torch import nn
 from torchvision.models.resnet import BasicBlock

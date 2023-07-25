@@ -1,3 +1,4 @@
+# noqa
 __all__ = ['NestedObject']
 
 

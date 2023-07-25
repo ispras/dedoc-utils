@@ -1,3 +1,4 @@
+# noqa
 from math import floor
 from statistics import median_low
 from typing import List

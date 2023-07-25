@@ -54,11 +54,13 @@ class DoctrTextDetector(AbstractTextDetector):
         if self._net:
             return self._net
 
-        self._net = detection_predictor(arch=self.arch, pretrained=False).eval().to(self.device)
         if self.checkpoint_path is None:
-            self.checkpoint_path = ""  # TODO download weights from huggingface
+            self._net = detection_predictor(arch=self.arch, pretrained=True).eval().to(self.device)
+        else:
+            self._net = detection_predictor(arch=self.arch, pretrained=False).eval().to(self.device)
+            self._net.model.load_state_dict(torch.load(self.checkpoint_path, map_location=self.location))
 
-        self._net.model.load_state_dict(torch.load(self.checkpoint_path, map_location=self.location))
+        return self._net
 
     def _set_device(self, on_gpu: bool) -> None:
         if on_gpu and torch.cuda.is_available():

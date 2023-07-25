@@ -2,14 +2,13 @@ import os.path
 import unittest
 
 import cv2
+from dedocutils.text_detection import DoctrTextDetector
 
-from dedocutils.preprocessing import SkewCorrector
 
+class TestClasses(unittest.TestCase):
 
-class TestCodeFormat(unittest.TestCase):
-
-    def test_text_detection(self):
-        file_path = os.path.join("../data", "document_example.png")
-        skew_corrector = SkewCorrector()
-        img = skew_corrector.preprocess(cv2.imread(file_path))
-        self.assertIsNotNone(img)
+    def test_text_detection(self) -> None:
+        file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "document_example.png"))
+        text_detector = DoctrTextDetector()
+        bboxes = text_detector.detect(cv2.imread(file_path))
+        self.assertTrue(len(bboxes) > 0)

@@ -1,3 +1,4 @@
+# noqa
 from typing import Tuple, Union
 
 import cv2

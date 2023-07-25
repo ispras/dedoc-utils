@@ -25,7 +25,7 @@ pip install .
 
 To install `torch` packages use:
 ```bash
-pip install .[torch]
+pip install ."[torch]"
 ```
 
 ## Basic usage

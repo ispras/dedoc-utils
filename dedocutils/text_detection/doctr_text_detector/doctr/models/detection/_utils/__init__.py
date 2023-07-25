@@ -1,1 +1,2 @@
-from .pytorch import *  # type: ignore[misc]
+# noqa
+from .pytorch import *

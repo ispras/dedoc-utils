@@ -10,17 +10,19 @@ from flake8.api import legacy as flake8
 
 class TestCodeFormat(unittest.TestCase):
     def get_files(self) -> List[str]:
-        path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+        check_dirs = ["dedocutils", "tests"]
         files = []
-        for root, _, filenames in os.walk(path):
-            for file in filenames:
-                if not file.endswith(".py"):
-                    continue
-                with open(os.path.join(root, file), "r") as f:
-                    first_line = f.readline()
-                # ignore files with "noqa" in the beginning
-                if "# noqa" not in first_line:
-                    files.append(os.path.join(root, file))
+        for check_dir in check_dirs:
+            path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", check_dir))
+            for root, directories, filenames in os.walk(path):
+                for file in filenames:
+                    if not file.endswith(".py"):
+                        continue
+                    with open(os.path.join(root, file), "r") as f:
+                        first_line = f.readline()
+                    # ignore files with "noqa" in the beginning
+                    if "# noqa" not in first_line:
+                        files.append(os.path.join(root, file))
         return files
 
     def test_pep8_conformance(self) -> None:

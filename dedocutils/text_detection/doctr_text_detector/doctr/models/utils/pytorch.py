@@ -18,7 +18,7 @@ def load_pretrained_params(
 ) -> None:
     """Load a set of parameters onto a model
 
-    >>> from src.utils.utils_models.text_detector.doctr.models import load_pretrained_params
+    >>> from dedocutils.text_detection.doctr_text_detector.doctr.models import load_pretrained_params
     >>> load_pretrained_params(model, "https://yoursource.com/yourcheckpoint-yourhash.zip")
 
     Args:
@@ -50,7 +50,7 @@ def conv_sequence_pt(
     """Builds a convolutional-based layer sequence
 
     >>> from torch.nn import Sequential
-    >>> from src.utils.utils_models.text_detector.doctr.models import conv_sequence
+    >>> from dedocutils.text_detection.doctr_text_detector.doctr.models import conv_sequence
     >>> module = Sequential(conv_sequence(3, 32, True, True, kernel_size=3))
 
     Args:
