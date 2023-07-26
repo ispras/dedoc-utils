@@ -1,0 +1,29 @@
+name: CI
+
+# Controls when the action will run. 
+on:
+  pull_request:
+    branches:
+      - master
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        pip3 install .[dev,torch]
+    - name: Run tests
+      run: |
+        python3 -m unittest -v -f tests/test_style.py
+        python3 -m unittest -v -f tests/unit_tests/test*
