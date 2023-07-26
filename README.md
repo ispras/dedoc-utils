@@ -85,11 +85,11 @@ for bbox in bboxes[:5]:
     print(bbox)
 ```
 
-> BBox(x_top_left=2415, y_top_left=3730, width=202, height=97)
-> BBox(x_top_left=790, y_top_left=3613, width=383, height=105)
-> BBox(x_top_left=1690, y_top_left=3488, width=407, height=104)
-> BBox(x_top_left=2171, y_top_left=3488, width=377, height=92)
-> BBox(x_top_left=885, y_top_left=3505, width=27, height=50)
+> BBox(x_top_left=2415, y_top_left=3730, width=202, height=97)  
+BBox(x_top_left=790, y_top_left=3613, width=383, height=105)  
+BBox(x_top_left=1690, y_top_left=3488, width=407, height=104)  
+BBox(x_top_left=2171, y_top_left=3488, width=377, height=92)  
+BBox(x_top_left=885, y_top_left=3505, width=27, height=50)  
 
 ### Using text recognizers
 
@@ -104,16 +104,15 @@ for bbox in bboxes[:10]:
     print(text)
 ```
 
-> Fie-
-> afjefjores.
-> coluntur,
-> dicuntur
-> 
-> delubro
-> eodem
-> dii
-> in
-> plures
+> Fie-  
+afjefjores.  
+coluntur,  
+dicuntur  
+delubro  
+eodem  
+dii
+in  
+plures
 
 ### Using line segmenters
 
@@ -133,9 +132,9 @@ for bbox in sorted_bboxes[1]:
     print(text)
 ```
 
-> gentes,
-> fimul.
-> obibant
-> munera
-> fumma
-> facra,
+> gentes,  
+fimul.  
+obibant  
+munera  
+fumma  
+facra,  
