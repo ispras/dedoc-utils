@@ -18,10 +18,8 @@ class SkewCorrector(AbstractPreprocessor):
 
     def preprocess(self, image: np.ndarray, parameters: Optional[dict] = None) -> np.ndarray:
         parameters = {} if parameters is None else parameters
-        result, _ = self.__auto_rotate(image, orientation_angle=parameters.get("orientation_angle", 0))
-        return result
+        orientation_angle = parameters.get("orientation_angle", 0)
 
-    def __auto_rotate(self, image: np.ndarray, orientation_angle: int = 0) -> (np.ndarray, int):
         if orientation_angle:
             image = self.__rotate_image(image, orientation_angle)
 
@@ -41,7 +39,7 @@ class SkewCorrector(AbstractPreprocessor):
             best_angle = angles[scores.index(max(scores))]
 
         rotated = self.__rotate_image(image, best_angle)
-        return rotated, best_angle + orientation_angle
+        return rotated
 
     def __determine_score(self, arr: np.ndarray, angle: int) -> (np.ndarray, float):
         data = self.__rotate_image(arr, angle)
