@@ -23,14 +23,14 @@ classifiers=[
 description = "Utils for automatic document images processing"
 keywords = ["text detection", "text recognition", "OCR", "deep learning", "computer vision"]
 readme="README.md"
-license = {file = "LICENSE.txt"}
+license = {file = "LICENSE"}
 dynamic = ["version"]
 requires-python = ">=3.6"
 dependencies = [
     "numpy==1.23.3",
     "opencv-python==4.6.0.66",
     "pyclipper==1.3.0.post4",  # for doctr
-    "pytesseract==0.3.0",
+    "pytesseract==0.3.10",
     "scikit_learn==1.0.2",
     "shapely==2.0.1",  # for doctr
     "tqdm==4.65.0",  # for doctr
@@ -42,6 +42,8 @@ torch = [
     "torchvision~=0.12.0"
 ]
 dev = [
+    "build==0.10.0",
+    "twine==4.0.2",
     "pycodestyle==2.7.0",
     "flake8==3.9.2",
     "flake8-annotations==2.6.2",
