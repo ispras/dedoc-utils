@@ -1,0 +1,20 @@
+[flake8]
+
+max-line-length = 160
+max-complexity = 10
+inline-quotes = "
+
+application-import-names = dedocutils, tests
+import-order-style = pycharm
+
+exclude =
+    .git,
+    __pycache__,
+    .idea,
+    build,
+    dedocutils/text_detection/doctr_text_detector/doctr,
+    *__init__.py
+
+# ANN101 - type annotations for self
+ignore =
+    ANN101
