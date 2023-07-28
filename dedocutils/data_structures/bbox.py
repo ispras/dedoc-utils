@@ -1,6 +1,6 @@
 from collections import OrderedDict
 from dataclasses import dataclass
-from typing import Tuple, Dict
+from typing import Dict, Tuple
 
 
 @dataclass
@@ -46,12 +46,12 @@ class BBox:
 
     def have_intersection_with_box(self, box: "BBox", threshold: float = 0.3) -> bool:
         # determine the (x, y)-coordinates of the intersection rectangle
-        xA = max(self.x_top_left, box.x_top_left)
-        yA = max(self.y_top_left, box.y_top_left)
-        xB = min(self.x_top_left + self.width, box.x_top_left + box.width)
-        yB = min(self.y_top_left + self.height, box.y_top_left + box.height)
+        x_min = max(self.x_top_left, box.x_top_left)
+        y_min = max(self.y_top_left, box.y_top_left)
+        x_max = min(self.x_top_left + self.width, box.x_top_left + box.width)
+        y_max = min(self.y_top_left + self.height, box.y_top_left + box.height)
         # compute the area of intersection rectangle
-        inter_a_area = max(0, xB - xA) * max(0, yB - yA)
+        inter_a_area = max(0, x_max - x_min) * max(0, y_max - y_min)
         # compute the area of both the prediction and ground-truth
         # rectangles
         box_b_area = float(box.width * box.height)

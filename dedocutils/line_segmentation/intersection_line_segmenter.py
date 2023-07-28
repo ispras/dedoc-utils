@@ -1,4 +1,4 @@
-from typing import List, Tuple, Optional
+from typing import List, Optional, Tuple
 
 import numpy as np
 
@@ -21,7 +21,7 @@ class IntersectionLineSegmenter(AbstractLineSegmenter):
             box_group, lines = self.__segment_lines(np.array(box_group))
 
         res_lines = []
-        for line_id, line in enumerate(lines):
+        for line in lines:
             res_lines.append([BBox(box[0][0], box[0][1], box[1][0] - box[0][0], box[1][1] - box[0][1]) for box in line])
 
         return res_lines

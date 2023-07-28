@@ -1,9 +1,9 @@
-from typing import Optional, List
+from typing import List, Optional
 
 import numpy as np
 import pytesseract
-from dedocutils.data_structures import BBox
 
+from dedocutils.data_structures import BBox
 from dedocutils.data_structures.text_with_bbox import TextWithBBox
 from dedocutils.text_detection_recognition.abstract_detector_recognizer import AbstractDetectorRecognizer
 
