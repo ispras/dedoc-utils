@@ -68,4 +68,4 @@ class DoctrTextDetector(AbstractTextDetector):
             self.location = lambda storage, loc: storage.cuda()
         else:
             self.device = torch.device("cpu")
-            self.location = 'cpu'
+            self.location = "cpu"
