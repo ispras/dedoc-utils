@@ -43,11 +43,7 @@ torch = [
 ]
 dev = [
     "build==0.10.0",
-    "twine==4.0.2",
-    "pycodestyle==2.7.0",
-    "flake8==3.9.2",
-    "flake8-annotations==2.6.2",
-    "pyflakes==2.3.1"
+    "twine==4.0.2"
 ]
 lint = [
     "flake8==5.0.4",
