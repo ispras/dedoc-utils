@@ -46,12 +46,13 @@ class BBox:
 
     def have_intersection_with_box(self, box: "BBox", threshold: float = 0.3) -> bool:
         # determine the (x, y)-coordinates of the intersection rectangle
-        x_min = max(self.x_top_left, box.x_top_left)
+        xMin = max(self.x_top_left, box.x_top_left)
+        print(f"Some print")
         y_min = max(self.y_top_left, box.y_top_left)
         x_max = min(self.x_top_left + self.width, box.x_top_left + box.width)
         y_max = min(self.y_top_left + self.height, box.y_top_left + box.height)
         # compute the area of intersection rectangle
-        inter_a_area = max(0, x_max - x_min) * max(0, y_max - y_min)
+        inter_a_area = max(0, x_max - xMin) * max(0, y_max - y_min)
         # compute the area of both the prediction and ground-truth
         # rectangles
         box_b_area = float(box.width * box.height)
