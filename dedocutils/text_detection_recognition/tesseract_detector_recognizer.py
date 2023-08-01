@@ -18,7 +18,7 @@ class TesseractDetectorRecognizer(AbstractDetectorRecognizer):
         lang = parameters.get("language", "rus+eng")
 
         data = pytesseract.image_to_data(image, lang=lang, output_type="dict", config=self.config)
-        words, left, top, width, height, levels = data["text"], data["left"], data["top"], data["width"], data["height"], data['level']
+        words, left, top, width, height, levels = data["text"], data["left"], data["top"], data["width"], data["height"], data["level"]
 
         # filter empty words and corresponding coordinates
         irrelevant_indices = [idx for idx, word in enumerate(words) if not word.strip()]

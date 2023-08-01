@@ -17,7 +17,7 @@ class TesseractTextDetector(AbstractTextDetector):
 
         data = pytesseract.image_to_data(image, lang=lang, output_type="dict", config=self.config)
 
-        left, top, width, height, levels = data["left"], data["top"], data["width"], data["height"], data['level']
+        left, top, width, height, levels = data["left"], data["top"], data["width"], data["height"], data["level"]
 
         bboxes = []
         for x, y, w, h, level in zip(left, top, width, height, levels):
