@@ -16,11 +16,13 @@ class TesseractTextDetector(AbstractTextDetector):
         lang = parameters.get("language", "rus+eng")
 
         data = pytesseract.pytesseract.image_to_data(image, lang=lang, output_type="dict", config=self.config)
-        left, top, width, height = data["left"], data["top"], data["width"], data["height"]
+
+        left, top, width, height, level = data["left"], data["top"], data["width"], data["height"], data['level']
 
         bboxes = []
-        for x, y, w, h in zip(left, top, width, height):
-            bbox = BBox(x_top_left=x, y_top_left=y, width=w, height=h)
-            bboxes.append(bbox)
+        for x, y, w, h, level in zip(left, top, width, height, level):
+            if level == 5:
+                bbox = BBox(x_top_left=x, y_top_left=y, width=w, height=h)
+                bboxes.append(bbox)
 
         return bboxes
