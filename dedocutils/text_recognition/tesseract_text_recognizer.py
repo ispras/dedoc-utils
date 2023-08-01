@@ -15,5 +15,5 @@ class TesseractTextRecognizer(AbstractTextRecognizer):
         parameters = {} if parameters is None else parameters
         lang = parameters.get("language", "rus+eng")
 
-        text = pytesseract.pytesseract.image_to_string(image, lang=lang, config=self.config)
+        text = pytesseract.image_to_string(image, lang=lang, config=self.config)
         return text
