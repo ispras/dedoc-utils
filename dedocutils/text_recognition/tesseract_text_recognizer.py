@@ -8,8 +8,8 @@ from dedocutils.text_recognition.abstract_text_recognizer import AbstractTextRec
 
 class TesseractTextRecognizer(AbstractTextRecognizer):
 
-    def __init__(self, config: Optional[str] = None) -> None:
-        self.config = config if config is not None else "--psm 6"
+    def __init__(self, config: Optional[str] = "--psm 6") -> None:
+        self.config = config
 
     def recognize(self, image: np.ndarray, parameters: Optional[dict] = None) -> str:
         parameters = {} if parameters is None else parameters
