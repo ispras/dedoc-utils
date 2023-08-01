@@ -10,7 +10,7 @@ from dedocutils.text_detection_recognition.abstract_detector_recognizer import A
 
 class TesseractDetectorRecognizer(AbstractDetectorRecognizer):
 
-    def __init__(self, config: Optional[str] = "--psm 3") -> None:
+    def __init__(self, config: str = "--psm 3") -> None:
         self.config = config
 
     def detect_recognize(self, image: np.ndarray, parameters: Optional[dict] = None) -> List[TextWithBBox]:

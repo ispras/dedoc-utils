@@ -3,7 +3,7 @@ Changelog
 
 v0.2 (2023-08-01)
 -------------------
-* TeserractTextDetector is added 
+* TesseractTextDetector is added 
 
 v0.1 (2023-07-26)
 -------------------

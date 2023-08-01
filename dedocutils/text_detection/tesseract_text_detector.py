@@ -8,7 +8,7 @@ from dedocutils.text_detection import AbstractTextDetector
 
 
 class TesseractTextDetector(AbstractTextDetector):
-    def __init__(self, config: Optional[str] = "--psm 3") -> None:
+    def __init__(self, config: str = "--psm 3") -> None:
         self.config = config
 
     def detect(self, image: np.ndarray, parameters: Optional[dict] = None) -> List[BBox]:
