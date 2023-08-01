@@ -1,21 +1,7 @@
 import argparse
 import re
-from typing import Pattern
 
-
-def is_correct_version(version: str, tag: str, old_version: str, regexp: Pattern) -> bool:
-    match = regexp.match(version)
-
-    if match is None:
-        print("New version doesn't match the pattern")  # noqa
-        return False
-
-    if not (tag.startswith("v") and tag[1:] == version):
-        print("Tag value should be equal to version with `v` in the beginning")  # noqa
-        return False
-
-    return old_version < version
-
+from pkg_resources import parse_version
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -27,7 +13,10 @@ if __name__ == "__main__":
     print(f"Old version: {args.old_version}, new version: {args.new_version}, tag: {args.tag}")  # noqa
 
     version_pattern = re.compile(r"^\d+\.\d+(\.\d+)?$")
-    correct = is_correct_version(args.new_version, args.tag, args.old_version, version_pattern)
+    match = version_pattern.match(args.new_version)
 
-    assert correct
+    assert match is not None, "New version doesn't match the pattern"
+    assert args.tag.startswith("v") and args.tag[1:] == args.new_version, "Tag value should be equal to version with `v` in the beginning"
+    assert parse_version(args.old_version) < parse_version(args.new_version), "New version should be greater than old version"
+
     print("Version is correct")  # noqa
