@@ -22,13 +22,13 @@ class AbstractTextRecognizer(ABC):
         pass
 
     def recognize_bbox(self, image: np.ndarray, box: BBox, need_rotate: bool = False) -> str:
-        line_img = image[box.y_top_left:box.y_bottom_right, box.x_top_left:box.x_bottom_right]
+        line_image = image[box.y_top_left:box.y_bottom_right, box.x_top_left:box.x_bottom_right]
 
         if need_rotate:
-            line_img = np.rot90(line_img)
+            line_image = np.rot90(line_image)
 
-        line_img = np.pad(line_img, [(15, 15), (15, 15), (0, 0)], constant_values=255)
-        text = self.recognize(line_img)
+        line_image = np.pad(line_image, [(15, 15), (15, 15), (0, 0)], constant_values=255)
+        text = self.recognize(line_image)
         return text
 
     def recognize_bboxes(self, image: np.ndarray, bboxes: List[BBox]) -> List[str]:
