@@ -21,8 +21,8 @@ class AbstractTextRecognizer(ABC):
         """
         pass
 
-    def recognize_bbox(self, image: np.ndarray, box: BBox, need_rotate: bool = False) -> str:
-        line_image = image[box.y_top_left:box.y_bottom_right, box.x_top_left:box.x_bottom_right]
+    def recognize_bbox(self, image: np.ndarray, bbox: BBox, need_rotate: bool = False) -> str:
+        line_image = image[bbox.y_top_left:bbox.y_bottom_right, bbox.x_top_left:bbox.x_bottom_right]
 
         if need_rotate:
             line_image = np.rot90(line_image)
