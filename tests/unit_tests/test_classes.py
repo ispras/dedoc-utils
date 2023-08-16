@@ -7,7 +7,6 @@ from dedocutils.text_detection import DoctrTextDetector, TesseractTextDetector
 
 
 class TestClasses(unittest.TestCase):
-
     def test_text_detection(self) -> None:
         file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "document_example.png"))
         text_detector = DoctrTextDetector()
