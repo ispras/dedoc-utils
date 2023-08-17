@@ -1,5 +1,9 @@
 Changelog
 =========
+v0.2.2 (2023-08-17)
+-------------------
+* Bugfix in `TesseractDetectorRecognizer`
+
 v0.2.1 (2023-08-16)
 -------------------
 * `recognize_bbox` and `recognize_bboxes` methods are added in `AbstractTextRecognizer`
