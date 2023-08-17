@@ -31,9 +31,9 @@ class TesseractDetectorRecognizer(AbstractDetectorRecognizer):
         assert len(words) == len(left) == len(top) == len(width) == len(height), "Number of words and their coordinates should be equal"
 
         text_with_bbox_list = []
-        for w, x, y, w, h, level in zip(words, left, top, width, height, levels):
+        for word, x, y, w, h, level in zip(words, left, top, width, height, levels):
             if level == 5:
-                twb = TextWithBBox(text=w, bbox=BBox(x_top_left=x, y_top_left=y, width=w, height=h))
+                twb = TextWithBBox(text=word, bbox=BBox(x_top_left=x, y_top_left=y, width=w, height=h))
                 text_with_bbox_list.append(twb)
 
         return text_with_bbox_list
