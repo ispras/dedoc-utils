@@ -28,6 +28,7 @@ class ClusteringLineSegmenter(AbstractLineSegmenter):
 
         for el in sorted_bboxes:
             el["avgY"] /= len(el["bbox"])
+
         sorted_bboxes = sorted(sorted_bboxes, key=lambda x: x["avgY"])
         sorted_bboxes = [el["bbox"] for el in sorted_bboxes]
         sorted_bboxes = [sorted(line, key=lambda x: x.x_top_left) for line in sorted_bboxes]
