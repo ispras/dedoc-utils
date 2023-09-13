@@ -1,6 +1,10 @@
 Changelog
 =========
 
+v0.3 (2023-09-13)
+-------------------
+* Add dictionaries with info for preprocessors
+
 v0.2.3 (2023-09-01)
 -------------------
 * Add `to_relative_dict` method to `BBox`
