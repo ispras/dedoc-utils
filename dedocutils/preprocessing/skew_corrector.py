@@ -40,7 +40,7 @@ class SkewCorrector(AbstractPreprocessor):
             best_angle = angles[scores.index(max(scores))]
 
         rotated = rotate_image(image, best_angle)
-        return rotated, {"rotated_angle": orientation_angle + best_angle}
+        return rotated, {"rotated_angle": float(orientation_angle + best_angle)}
 
     def __determine_score(self, arr: np.ndarray, angle: int) -> Tuple[np.ndarray, float]:
         data = rotate_image(arr, angle)
