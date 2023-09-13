@@ -17,6 +17,6 @@ if __name__ == "__main__":
 
     assert match is not None, "New version doesn't match the pattern"
     assert args.tag.startswith("v") and args.tag[1:] == args.new_version, "Tag value should be equal to version with `v` in the beginning"
-    assert parse_version(args.old_version) <= parse_version(args.new_version), "New version should be greater than old version"
+    assert parse_version(args.old_version) < parse_version(args.new_version), "New version should be greater than old version"
 
     print("Version is correct")  # noqa

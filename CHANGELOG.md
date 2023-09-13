@@ -1,6 +1,10 @@
 Changelog
 =========
 
+v0.3.1 (2023-09-13)
+-------------------
+* Add float conversion for `rotated_angle` in `SkewCorrection`
+
 v0.3 (2023-09-13)
 -------------------
 * Add dictionaries with info for preprocessors
