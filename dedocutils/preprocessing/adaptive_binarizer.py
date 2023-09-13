@@ -20,13 +20,13 @@ class AdaptiveBinarizer(AbstractPreprocessor):
         self.block_size = block_size
         self.delta = delta
 
-    def preprocess(self, image: np.ndarray, parameters: Optional[dict] = None) -> np.ndarray:
+    def preprocess(self, image: np.ndarray, parameters: Optional[dict] = None) -> Tuple[np.ndarray, dict]:
         image = self.__adjust_gamma(image)
         mask = self.__get_mask(image)
         image_in = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         image_out = self.__combine_block_image_process(image_in, mask)
         image_out = cv2.cvtColor(image_out, cv2.COLOR_GRAY2RGB)
-        return image_out
+        return image_out, {}
 
     def __adjust_gamma(self, image: np.ndarray, gamma: float = 1.2) -> np.ndarray:
         # build a lookup table mapping the pixel values [0, 255] to
@@ -66,6 +66,7 @@ class AdaptiveBinarizer(AbstractPreprocessor):
                 idx = (row, col)
                 block_idx = self.__get_block_index(image.shape, idx)
                 out_image[tuple(block_idx)] = self._adaptive_median_threshold(image[tuple(block_idx)])
+
         return out_image
 
     def __get_mask(self, img: np.ndarray) -> np.ndarray:

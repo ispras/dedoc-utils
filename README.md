@@ -49,8 +49,8 @@ binarizer = AdaptiveBinarizer()
 skew_corrector = SkewCorrector()
 
 image = cv2.imread("examples/before_preprocessing.jpg")
-binarized_image = binarizer.preprocess(image)
-preprocessed_image = skew_corrector.preprocess(binarized_image)
+binarized_image, _ = binarizer.preprocess(image)
+preprocessed_image, _ = skew_corrector.preprocess(binarized_image)
 
 fig = plt.figure(figsize=(10, 7))
 rows, columns = 1, 3

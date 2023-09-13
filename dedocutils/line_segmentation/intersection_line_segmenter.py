@@ -39,11 +39,13 @@ class IntersectionLineSegmenter(AbstractLineSegmenter):
         if len(box_group) <= 1:
             # since there is only one box in the box group do nothing but copying the box
             return box_group, lines
+
         while i < len(box_group):
             for j in range(i + 1, len(box_group)):
                 if self.__is_on_same_line(box_group[i], box_group[j]):
                     if i not in temp:
                         temp.append(i)
+
                     if j not in temp:
                         temp.append(j)
 

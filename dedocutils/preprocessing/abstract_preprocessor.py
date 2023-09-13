@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Optional
+from typing import Optional, Tuple
 
 import numpy as np
 
@@ -11,10 +11,10 @@ class AbstractPreprocessor(ABC):
     """
 
     @abstractmethod
-    def preprocess(self, image: np.ndarray, parameters: Optional[dict] = None) -> np.ndarray:
+    def preprocess(self, image: np.ndarray, parameters: Optional[dict] = None) -> Tuple[np.ndarray, dict]:
         """
         :param image: document image for preprocessing
         :param parameters: some preprocessing parameters
-        :return: preprocessed image
+        :return: preprocessed image and some info parameters
         """
         pass
