@@ -1,6 +1,10 @@
 Changelog
 =========
 
+v0.3.2 (2023-09-25)
+-------------------
+* Add intervals to dependencies versions
+
 v0.3.1 (2023-09-13)
 -------------------
 * Add float conversion for `rotated_angle` in `SkewCorrection`
