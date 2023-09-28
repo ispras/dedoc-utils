@@ -1,9 +1,10 @@
+from typing import List, Tuple
+
 import cv2
 import numpy as np
 import pyclipper
-
-from typing import List, Tuple
 from shapely.geometry import Polygon
+
 from ..core import DetectionPostProcessor
 
 __all__ = ['DBPostProcessor']

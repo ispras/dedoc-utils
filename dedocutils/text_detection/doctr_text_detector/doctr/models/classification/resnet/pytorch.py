@@ -1,11 +1,13 @@
 # noqa
 from typing import Any, Callable, Dict, List, Optional, Tuple
+
 from torch import nn
 from torchvision.models.resnet import BasicBlock
 from torchvision.models.resnet import ResNet as TVResNet
 from torchvision.models.resnet import resnet18 as tv_resnet18
 from torchvision.models.resnet import resnet34 as tv_resnet34
 from torchvision.models.resnet import resnet50 as tv_resnet50
+
 from dedocutils.text_detection.doctr_text_detector.doctr.datasets.vocabs import VOCABS
 from ...utils import conv_sequence_pt, load_pretrained_params
 

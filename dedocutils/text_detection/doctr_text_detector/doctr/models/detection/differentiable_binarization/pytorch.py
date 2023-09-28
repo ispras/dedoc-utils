@@ -1,14 +1,15 @@
+from typing import Any, Callable, Dict, List, Optional
+
 import numpy as np
 import torch
-
 from torch import nn
-from typing import Any, Callable, Dict, List, Optional
 from torch.nn import functional as F
 from torchvision.models import resnet34, resnet50
 from torchvision.models._utils import IntermediateLayerGetter
 from torchvision.ops.deform_conv import DeformConv2d
-from ...utils import load_pretrained_params
+
 from .base import DBPostProcessor, _DBNet
+from ...utils import load_pretrained_params
 
 __all__ = ['DBNet', 'db_resnet50', 'db_resnet34', 'db_resnet50_rotation']
 
