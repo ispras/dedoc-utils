@@ -1,6 +1,10 @@
 Changelog
 =========
 
+v0.3.4 (2023-09-28)
+-------------------
+* Make `BBox` class `Serializable`
+
 v0.3.3 (2023-09-28)
 -------------------
 * Update `BBox` class
