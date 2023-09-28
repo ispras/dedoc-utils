@@ -1,9 +1,6 @@
-import math
 from collections import OrderedDict
 from dataclasses import dataclass
 from typing import Dict, Tuple
-
-import numpy as np
 
 
 @dataclass
@@ -48,24 +45,6 @@ class BBox:
     def y_bottom_right(self) -> int:
         return self.y_top_left + self.height
 
-    @staticmethod
-    def crop_image_by_box(image: np.ndarray, bbox: "BBox") -> np.ndarray:
-        return image[bbox.y_top_left:bbox.y_bottom_right, bbox.x_top_left:bbox.x_bottom_right]
-
-    def rotate_coordinates(self, angle_rotate: float, image_shape: Tuple[int]) -> None:
-        xb, yb = self.x_top_left, self.y_top_left
-        xe, ye = self.x_bottom_right, self.y_bottom_right
-        rad = angle_rotate * math.pi / 180
-
-        xc = image_shape[1] / 2
-        yc = image_shape[0] / 2
-
-        bbox_xb = min((int(float(xb - xc) * math.cos(rad) - float(yb - yc) * math.sin(rad) + xc)), image_shape[1])
-        bbox_yb = min((int(float(yb - yc) * math.cos(rad) + float(xb - xc) * math.sin(rad) + yc)), image_shape[0])
-        bbox_xe = min((int(float(xe - xc) * math.cos(rad) - float(ye - yc) * math.sin(rad) + xc)), image_shape[1])
-        bbox_ye = min((int(float(ye - yc) * math.cos(rad) + float(xe - xc) * math.sin(rad) + yc)), image_shape[0])
-        self.__init__(bbox_xb, bbox_yb, bbox_xe - bbox_xb, bbox_ye - bbox_yb)
-
     def __str__(self) -> str:
         return f"BBox(x = {self.x_top_left} y = {self.y_top_left}, w = {self.width}, h = {self.height})"
 
@@ -99,12 +78,12 @@ class BBox:
         :param threshold: the lowest value of the intersection over union used get boolean result
         """
         # determine the (x, y)-coordinates of the intersection rectangle
-        x_min = max(self.x_top_left, box.x_top_left)
-        y_min = max(self.y_top_left, box.y_top_left)
-        x_max = min(self.x_top_left + self.width, box.x_top_left + box.width)
-        y_max = min(self.y_top_left + self.height, box.y_top_left + box.height)
+        x_a = max(self.x_top_left, box.x_top_left)
+        y_a = max(self.y_top_left, box.y_top_left)
+        x_b = min(self.x_top_left + self.width, box.x_top_left + box.width)
+        y_b = min(self.y_top_left + self.height, box.y_top_left + box.height)
         # compute the area of intersection rectangle
-        inter_a_area = max(0, x_max - x_min) * max(0, y_max - y_min)
+        inter_a_area = max(0, x_b - x_a) * max(0, y_b - y_a)
         # compute the area of both the prediction and ground-truth
         # rectangles
         box_b_area = float(box.width * box.height)
