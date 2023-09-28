@@ -3,7 +3,7 @@ Changelog
 
 v0.3.3 (2023-09-28)
 -------------------
-* Update `BBox` class
+* Update BBox class
 
 v0.3.2 (2023-09-25)
 -------------------
