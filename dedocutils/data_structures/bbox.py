@@ -99,12 +99,12 @@ class BBox:
         :param threshold: the lowest value of the intersection over union used get boolean result
         """
         # determine the (x, y)-coordinates of the intersection rectangle
-        x_a = max(self.x_top_left, box.x_top_left)
-        y_a = max(self.y_top_left, box.y_top_left)
-        x_b = min(self.x_top_left + self.width, box.x_top_left + box.width)
-        y_b = min(self.y_top_left + self.height, box.y_top_left + box.height)
+        x_min = max(self.x_top_left, box.x_top_left)
+        y_min = max(self.y_top_left, box.y_top_left)
+        x_max = min(self.x_top_left + self.width, box.x_top_left + box.width)
+        y_max = min(self.y_top_left + self.height, box.y_top_left + box.height)
         # compute the area of intersection rectangle
-        inter_a_area = max(0, x_b - x_a) * max(0, y_b - y_a)
+        inter_a_area = max(0, x_max - x_min) * max(0, y_max - y_min)
         # compute the area of both the prediction and ground-truth
         # rectangles
         box_b_area = float(box.width * box.height)
