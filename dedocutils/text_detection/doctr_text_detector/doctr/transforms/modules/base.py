@@ -1,8 +1,9 @@
 import math
 import random
+from typing import Any, Callable, Dict, List, Tuple
+
 import numpy as np
 
-from typing import Any, Callable, Dict, List, Tuple
 from dedocutils.text_detection.doctr_text_detector.doctr.utils.repr import NestedObject
 from .. import functional as F
 

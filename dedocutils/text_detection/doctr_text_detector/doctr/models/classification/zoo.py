@@ -1,8 +1,8 @@
 from typing import Any
 
+from .predictor import CropOrientationPredictor
 from .. import classification
 from ..preprocessor import PreProcessor
-from .predictor import CropOrientationPredictor
 
 __all__ = ["crop_orientation_predictor"]
 

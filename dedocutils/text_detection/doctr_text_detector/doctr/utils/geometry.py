@@ -1,8 +1,9 @@
+from math import ceil
+from typing import List, Optional, Tuple, Union
+
 import cv2
 import numpy as np
 
-from math import ceil
-from typing import List, Optional, Tuple, Union
 from .common_types import BoundingBox, Polygon4P
 
 __all__ = ['bbox_to_polygon', 'polygon_to_bbox', 'resolve_enclosing_bbox', 'resolve_enclosing_rbbox',

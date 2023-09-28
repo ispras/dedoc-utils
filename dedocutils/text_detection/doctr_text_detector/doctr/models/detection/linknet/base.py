@@ -1,9 +1,10 @@
+from typing import List, Tuple
+
 import cv2
 import numpy as np
 import pyclipper
-
 from shapely.geometry import Polygon
-from typing import List, Tuple
+
 from dedocutils.text_detection.doctr_text_detector.doctr.models.core import BaseModel
 from ..core import DetectionPostProcessor
 

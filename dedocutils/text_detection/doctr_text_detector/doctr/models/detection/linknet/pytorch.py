@@ -1,13 +1,14 @@
+from typing import Any, Callable, Dict, List, Optional, Tuple
+
 import numpy as np
 import torch
-
 from torch import nn
-from typing import Any, Callable, Dict, List, Optional, Tuple
 from torch.nn import functional as F
 from torchvision.models._utils import IntermediateLayerGetter
+
 from dedocutils.text_detection.doctr_text_detector.doctr.models.classification import resnet18, resnet34, resnet50
-from ...utils import load_pretrained_params
 from .base import LinkNetPostProcessor, _LinkNet
+from ...utils import load_pretrained_params
 
 __all__ = ['LinkNet', 'linknet_resnet18', 'linknet_resnet34', 'linknet_resnet50']
 

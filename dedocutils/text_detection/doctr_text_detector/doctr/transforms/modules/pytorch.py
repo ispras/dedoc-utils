@@ -1,13 +1,14 @@
 # noqa
 import math
+from typing import Any, Dict, Optional, Tuple, Union
+
 import numpy as np
 import torch
-
-from typing import Any, Dict, Optional, Tuple, Union
 from PIL.Image import Image
 from torch.nn.functional import pad
 from torchvision.transforms import functional as F
 from torchvision.transforms import transforms as T
+
 from ..functional.pytorch import random_shadow
 
 __all__ = ['Resize', 'GaussianNoise', 'ChannelShuffle', 'RandomHorizontalFlip', 'RandomShadow']

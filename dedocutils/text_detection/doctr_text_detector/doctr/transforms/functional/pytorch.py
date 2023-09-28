@@ -1,10 +1,11 @@
 # noqa
-import numpy as np
-import torch
-
 from copy import deepcopy
 from typing import Tuple
+
+import numpy as np
+import torch
 from torchvision.transforms import functional as F
+
 from dedocutils.text_detection.doctr_text_detector.doctr.utils.geometry import rotate_abs_geoms
 from .base import create_shadow_mask, crop_boxes
 

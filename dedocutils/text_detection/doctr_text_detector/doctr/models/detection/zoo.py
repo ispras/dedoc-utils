@@ -1,8 +1,8 @@
 from typing import Any
 
+from .predictor import DetectionPredictor
 from .. import detection
 from ..preprocessor import PreProcessor
-from .predictor import DetectionPredictor
 
 __all__ = ["detection_predictor"]
 
