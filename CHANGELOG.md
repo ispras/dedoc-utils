@@ -3,8 +3,7 @@ Changelog
 
 v0.3.4 (2023-09-28)
 -------------------
-* Add `Serializable` class
-* Make `BBox` child class of `Serializable`
+* Make `BBox` class `Serializable`
 
 v0.3.3 (2023-09-28)
 -------------------
