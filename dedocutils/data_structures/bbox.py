@@ -5,9 +5,11 @@ from typing import Dict, Tuple
 
 import numpy as np
 
+from dedocutils.data_structures.serializable import Serializable
+
 
 @dataclass
-class BBox:
+class BBox(Serializable):
     """
     Bounding box around some page object, the coordinate system starts from top left corner.
     """
