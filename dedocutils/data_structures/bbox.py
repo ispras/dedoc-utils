@@ -137,5 +137,5 @@ class BBox:
     def from_dict(some_dict: Dict[str, int]) -> "BBox":
         return BBox(**some_dict)
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash((self.x_top_left, self.y_top_left, self.width, self.height))
