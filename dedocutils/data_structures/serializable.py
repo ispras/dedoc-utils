@@ -14,4 +14,3 @@ class Serializable(ABC):
         :return: dict with all class data.
         """
         pass
-    
