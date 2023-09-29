@@ -5,11 +5,9 @@ from typing import Dict, Tuple
 
 import numpy as np
 
-from dedocutils.data_structures.serializable import Serializable
-
 
 @dataclass
-class BBox(Serializable):
+class BBox:
     """
     Bounding box around some page object, the coordinate system starts from top left corner.
     """
@@ -138,3 +136,6 @@ class BBox(Serializable):
     @staticmethod
     def from_dict(some_dict: Dict[str, int]) -> "BBox":
         return BBox(**some_dict)
+
+    def __hash__(self):
+        return hash((self.x_top_left, self.y_top_left, self.width, self.height))
