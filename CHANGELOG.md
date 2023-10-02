@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v0.3.5 (2023-10-02)
+-------------------
+* Delete `Serializable` class
+* Add `__hash__` method to `BBox`
+
 v0.3.4 (2023-09-28)
 -------------------
 * Add `Serializable` class
