@@ -1,6 +1,10 @@
 Changelog
 =========
 
+v0.3.6 (2023-12-26)
+-------------------
+* Fix image orientation correction in `SkewCorrector`
+
 v0.3.5 (2023-10-02)
 -------------------
 * Delete `Serializable` class
