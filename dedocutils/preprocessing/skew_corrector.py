@@ -22,7 +22,8 @@ class SkewCorrector(AbstractPreprocessor):
         orientation_angle = parameters.get("orientation_angle", 0)
 
         if orientation_angle:
-            image = rotate_image(image, orientation_angle)
+            rotation_nums = orientation_angle // 90
+            image = np.rot90(image, rotation_nums)
 
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
