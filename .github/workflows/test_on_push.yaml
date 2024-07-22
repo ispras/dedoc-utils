@@ -22,7 +22,7 @@ jobs:
     - name: Install dependencies
       run: |
         python3 -m pip install --upgrade pip
-        pip3 install .[dev,torch]
+        pip3 install .[dev,torch,doctr]
     - name: Run lint
       run: |
         pip3 install .[lint]

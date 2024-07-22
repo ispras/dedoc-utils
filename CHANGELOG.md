@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v0.3.7 (2024-07-22)
+-------------------
+* Move `doctr` dependencies to a separate group
+* Upgrade `numpy` version
+
 v0.3.6 (2023-12-26)
 -------------------
 * Fix image orientation correction in `SkewCorrector`
