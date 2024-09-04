@@ -52,6 +52,20 @@ class BBox:
     def crop_image_by_box(image: np.ndarray, bbox: "BBox") -> np.ndarray:
         return image[bbox.y_top_left:bbox.y_bottom_right, bbox.x_top_left:bbox.x_bottom_right]
 
+    @staticmethod
+    def shift_bbox(bbox: "BBox", shift_x: int, shift_y: int) -> "BBox":
+        """
+        Shift bounding box by vector (shift_x, shift_y)
+
+        :param bbox: original BBox to be shifted
+        :param shift_x: x coordinate offset
+        :param shift_y: y coordinate offset
+        """
+        return BBox(x_top_left=bbox.x_top_left + shift_x,
+                    y_top_left=bbox.y_top_left + shift_y,
+                    width=bbox.width,
+                    height=bbox.height)
+
     def rotate_coordinates(self, angle_rotate: float, image_shape: Tuple[int]) -> None:
         xb, yb = self.x_top_left, self.y_top_left
         xe, ye = self.x_bottom_right, self.y_bottom_right
