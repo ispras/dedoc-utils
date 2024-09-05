@@ -52,7 +52,7 @@ class BBox:
     def crop_image_by_box(image: np.ndarray, bbox: "BBox") -> np.ndarray:
         return image[bbox.y_top_left:bbox.y_bottom_right, bbox.x_top_left:bbox.x_bottom_right]
 
-    def shift_bbox(self, shift_x: int, shift_y: int) -> None:
+    def shift(self, shift_x: int, shift_y: int) -> None:
         self.x_top_left += shift_x
         self.y_top_left += shift_y
 
