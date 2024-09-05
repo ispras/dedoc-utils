@@ -61,10 +61,7 @@ class BBox:
         :param shift_x: x coordinate offset
         :param shift_y: y coordinate offset
         """
-        return BBox(x_top_left=bbox.x_top_left + shift_x,
-                    y_top_left=bbox.y_top_left + shift_y,
-                    width=bbox.width,
-                    height=bbox.height)
+        return BBox(x_top_left=bbox.x_top_left + shift_x, y_top_left=bbox.y_top_left + shift_y, width=bbox.width, height=bbox.height)
 
     def rotate_coordinates(self, angle_rotate: float, image_shape: Tuple[int]) -> None:
         xb, yb = self.x_top_left, self.y_top_left
