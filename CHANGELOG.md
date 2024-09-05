@@ -1,7 +1,7 @@
 Changelog
 =========
 
-v0.3.8 (2024-09-5)
+v0.3.8 (2024-09-05)
 -------------------
 * Add `shift_bbox` method to `BBox` class
 
