@@ -1,6 +1,10 @@
 Changelog
 =========
 
+v0.3.8 (2024-09-05)
+-------------------
+* Add `shift` method to `BBox` class
+
 v0.3.7 (2024-07-22)
 -------------------
 * Move `doctr` dependencies to a separate group
