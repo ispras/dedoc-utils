@@ -1,6 +1,10 @@
 Changelog
 =========
 
+v0.3.9 (2026-06-19)
+-------------------
+* Add `OrientationClassifier` class
+
 v0.3.8 (2024-09-05)
 -------------------
 * Add `shift` method to `BBox` class
