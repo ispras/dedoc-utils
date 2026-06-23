@@ -16,13 +16,11 @@ class OrientationClassifier:
     Class Classifier for work with Orientation Network. This class set device,
     preprocessing (transform) input data, weights of model
     """
-    def __init__(self, checkpoint_path: str) -> None:
-        if torch.cuda.is_available():
-            self.device = torch.device("cuda:0")
-            self.location = lambda storage, loc: storage.cuda()
+    def __init__(self, checkpoint_path: str, use_gpu: bool = True) -> None:
+        if use_gpu and torch.cuda.is_available():
+            self.to(torch.device("cuda"))
         else:
-            self.device = torch.device("cpu")
-            self.location = "cpu"
+            self.to(torch.device("cpu"))
 
         logger.warning(f"Classifier is set to device {self.device}")
 
@@ -34,6 +32,15 @@ class OrientationClassifier:
 
         self.checkpoint_path = checkpoint_path
         self.classes = [0, 90, 180, 270]
+        self._net = None
+
+    def to(self, device: torch.device) -> None:
+        self.device = device
+        if device == torch.device("cpu"):
+            self.location = "cpu"
+        else:
+            self.location = lambda storage, loc: storage.cuda()
+
         self._net = None
 
     @property
@@ -58,11 +65,11 @@ class OrientationClassifier:
         all_orientation_predicted = []
 
         with torch.no_grad():
-            tensor_images = torch.stack(self.transform(images)).float().to(self.device)
+            tensor_images = torch.stack(self.transform(images)).float()
 
             for i in range(0, len(tensor_images), batch_size):
                 batch = tensor_images[i:i + batch_size]
-                outputs = self.net(batch)
+                outputs = self.net(batch.to(self.device))
 
                 # first 2 classes mean columns number
                 # last 4 classes mean orientation
