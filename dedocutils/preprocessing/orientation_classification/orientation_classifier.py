@@ -13,8 +13,8 @@ logger = logging.getLogger()
 
 class OrientationClassifier:
     """
-    Class Classifier for work with Orientation Network. This class set device,
-    preprocessing (transform) input data, weights of model
+    Class Classifier for work with Orientation Network for detecting document page orientation.
+    This class set device, preprocessing (transform) input data, weights of model.
     """
     def __init__(self, checkpoint_path: str, use_gpu: bool = True) -> None:
         if use_gpu and torch.cuda.is_available():

@@ -7,12 +7,12 @@ from torchvision import models
 
 class ClassificationModelTorch(nn.Module):
     """
-    Class detects EfficientNet B0 model
+    Wrapper for EfficientNet B0 model.
     """
     def __init__(self, model_path: Optional[str], num_classes: int = 6) -> None:
         """
-        first 2 classes mean columns number
-        last 4 classes mean orientation
+        First 2 classes are the number of columns on the page [1 column, 2 columns].
+        Last 4 classes are the page orientation in degrees [0, 90, 180, 270].
         """
         super(ClassificationModelTorch, self).__init__()
         self.efficientnet_b0 = models.efficientnet_b0(pretrained=model_path is None)
