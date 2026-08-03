@@ -1,6 +1,10 @@
 Changelog
 =========
 
+v0.3.10 (2026-08-03)
+--------------------
+* Make `SkewCorrector` faster
+
 v0.3.9 (2026-06-19)
 -------------------
 * Add `OrientationClassifier` class
