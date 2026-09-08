@@ -16,8 +16,7 @@ class SkewCorrector(AbstractPreprocessor):
     def __init__(self) -> None:
         self._step = 1  # step
         self._max_angle = 45  # max angle
-        self._min_side = 1000  # the fine sweep runs on an image downscaled to this long side (never upscales a small page)
-        self._coarse_side = 512  # the coarse guess runs on this smaller thumbnail
+        self._coarse_side = 512  # the coarse guess runs on a thumbnail with this long side
 
     def preprocess(self, image: np.ndarray, parameters: Optional[dict] = None) -> Tuple[np.ndarray, dict]:
         parameters = {} if parameters is None else parameters
@@ -28,10 +27,6 @@ class SkewCorrector(AbstractPreprocessor):
 
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
-        scale = min(1.0, self._min_side / max(thresh.shape[:2]))
-        if scale < 1.0:
-            thresh = cv2.resize(thresh, None, fx=scale, fy=scale, interpolation=cv2.INTER_AREA)
-
         coarse_scale = min(1.0, self._coarse_side / max(thresh.shape[:2]))
         thumb = cv2.resize(thresh, None, fx=coarse_scale, fy=coarse_scale, interpolation=cv2.INTER_AREA) if coarse_scale < 1.0 else thresh
 
@@ -39,7 +34,15 @@ class SkewCorrector(AbstractPreprocessor):
         coarse = float(coarse_angles[int(np.argmax([self._score(thumb, angle) for angle in coarse_angles]))])
         lo, hi = max(coarse - 4, -self._max_angle), min(coarse + 4, self._max_angle)
         fine_angles = np.arange(lo, hi + 0.001, self._step)
-        best_angle = float(fine_angles[int(np.argmax([self._score(thresh, angle) for angle in fine_angles]))])
+        scores = [self._score(thresh, angle) for angle in fine_angles]
+        max_idx = int(np.argmax(scores))
+        # a document with short lines gives a plateau instead of a peak: take the angle between two equally good ones
+        if max_idx >= 2 and scores[max_idx - 2] > scores[max_idx] * 0.98:
+            best_angle = float(fine_angles[max_idx - 1])
+        elif max_idx < len(scores) - 2 and scores[max_idx + 2] > scores[max_idx] * 0.98:
+            best_angle = float(fine_angles[max_idx + 1])
+        else:
+            best_angle = float(fine_angles[max_idx])
 
         rotated = image if best_angle == 0 else rotate_image(image, best_angle)
         return rotated, {"rotated_angle": float(orientation_angle + best_angle)}
