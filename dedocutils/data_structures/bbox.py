@@ -27,7 +27,7 @@ class BBox:
     |
     |
     V y
-    
+
     Args:
         x_top_left (int): X coordinate of the bbox top left corner.
         y_top_left (int): Y coordinate of the bbox top left corner.
@@ -39,7 +39,7 @@ class BBox:
     width: int
     height: int
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if self.x_top_left < 0 or self.y_top_left < 0 or self.width < 0 or self.height < 0:
             raise ValueError(f"All bbox attributes should be non-negative, got: {self}")
 

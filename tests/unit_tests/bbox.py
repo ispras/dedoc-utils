@@ -137,10 +137,7 @@ class TestBBoxSerialization(unittest.TestCase):
     def test_to_dict_is_ordered(self) -> None:
         bbox = BBox(x_top_left=10, y_top_left=20, width=30, height=40)
         result = bbox.to_dict()
-        self.assertEqual(
-            list(result.keys()),
-            ["x_top_left", "y_top_left", "width", "height"],
-        )
+        self.assertEqual(list(result.keys()), ["x_top_left", "y_top_left", "width", "height"])
 
     def test_to_relative_dict(self) -> None:
         bbox = BBox(x_top_left=10, y_top_left=20, width=30, height=40)
