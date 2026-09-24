@@ -1,6 +1,10 @@
 Changelog
 =========
 
+v0.3.12 (2026-09-22)
+--------------------
+* Fix bugs of `BBox` comparison and rotation.
+
 v0.3.11 (2026-09-08)
 --------------------
 * Improve `SkewCorrector` work on images with short text lines
