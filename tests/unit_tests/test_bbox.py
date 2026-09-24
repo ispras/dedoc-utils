@@ -235,7 +235,7 @@ class TestBBoxRotateCoordinates(unittest.TestCase):
         self.assertEqual(bbox.x_top_left, 0)
         self.assertEqual(bbox.y_top_left, 0)
         self.assertAlmostEqual(bbox.width, 100, delta=1)
-        self.assertAlmostEqual(bbox.width, 100, delta=1)
+        self.assertAlmostEqual(bbox.height, 100, delta=1)
 
     def test_rotate_90_degrees(self) -> None:
         bbox = BBox(x_top_left=40, y_top_left=40, width=20, height=20)
@@ -250,5 +250,8 @@ class TestBBoxRotateCoordinates(unittest.TestCase):
     def test_rotate_out_of_image_bounds(self) -> None:
         bbox = BBox(x_top_left=0, y_top_left=0, width=100, height=100)
         image_shape = (100, 100)
-        with self.assertRaises(ValueError):
-            bbox.rotate_coordinates(angle_rotate=45, image_shape=image_shape)
+        bbox.rotate_coordinates(angle_rotate=45, image_shape=image_shape)
+        self.assertEqual(bbox.y_top_left, 0)
+        self.assertEqual(bbox.y_bottom_right, 100)
+        self.assertAlmostEqual(bbox.x_top_left, 50, delta=1)
+        self.assertAlmostEqual(bbox.x_bottom_right, 50, delta=1)
