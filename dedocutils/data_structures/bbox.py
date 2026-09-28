@@ -3,7 +3,7 @@ from __future__ import annotations
 import math
 from collections import OrderedDict
 from dataclasses import dataclass
-from typing import Dict, Tuple
+from typing import Dict, Tuple, Union
 
 import numpy as np
 
@@ -60,7 +60,7 @@ class BBox:
         self.y_top_left += shift_y
         self.__post_init__()
 
-    def rotate_coordinates(self, angle_rotate: float, image_shape: Tuple[int, int]) -> None:
+    def rotate_coordinates(self, angle_rotate: float, image_shape: Union[Tuple[int, int], Tuple[int, int, int]]) -> None:
         xb, yb = self.x_top_left, self.y_top_left
         xe, ye = self.x_bottom_right, self.y_bottom_right
         rad = angle_rotate * math.pi / 180
@@ -68,15 +68,17 @@ class BBox:
         xc = image_shape[1] / 2
         yc = image_shape[0] / 2
 
-        bbox_xb = min((int(float(xb - xc) * math.cos(rad) - float(yb - yc) * math.sin(rad) + xc)), image_shape[1])
-        bbox_yb = min((int(float(yb - yc) * math.cos(rad) + float(xb - xc) * math.sin(rad) + yc)), image_shape[0])
-        bbox_xe = min((int(float(xe - xc) * math.cos(rad) - float(ye - yc) * math.sin(rad) + xc)), image_shape[1])
-        bbox_ye = min((int(float(ye - yc) * math.cos(rad) + float(xe - xc) * math.sin(rad) + yc)), image_shape[0])
+        bbox_xb = int(float(xb - xc) * math.cos(rad) - float(yb - yc) * math.sin(rad) + xc)
+        bbox_yb = int(float(yb - yc) * math.cos(rad) + float(xb - xc) * math.sin(rad) + yc)
+        bbox_xe = int(float(xe - xc) * math.cos(rad) - float(ye - yc) * math.sin(rad) + xc)
+        bbox_ye = int(float(ye - yc) * math.cos(rad) + float(xe - xc) * math.sin(rad) + yc)
 
-        self.x_top_left = min(bbox_xb, bbox_xe)
-        self.y_top_left = min(bbox_yb, bbox_ye)
-        self.width = abs(bbox_xe - bbox_xb)
-        self.height = abs(bbox_ye - bbox_yb)
+        self.x_top_left = max(0, min(bbox_xb, bbox_xe))
+        self.y_top_left = max(0, min(bbox_yb, bbox_ye))
+        x_bottom_right = min(image_shape[1], max(bbox_xb, bbox_xe))
+        y_bottom_right = min(image_shape[0], max(bbox_yb, bbox_ye))
+        self.width = x_bottom_right - self.x_top_left
+        self.height = y_bottom_right - self.y_top_left
         self.__post_init__()
 
     @property
